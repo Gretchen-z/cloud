@@ -1,0 +1,26 @@
+app.id: ${random.uuid}
+
+spring:
+  kafka:
+    consumer:
+      group-id: data
+      bootstrap-servers: localhost:9991
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json.value.default.type: com.example.data.Payload.java
+          use.type.headers: false
+
+  cloud:
+    zookeeper:
+      connect-string: localhost:2181
+  application:
+    name: data
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5435/db
+    username: app
+    password: pass
+server:
+  port: 0
+
